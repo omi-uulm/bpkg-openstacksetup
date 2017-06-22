@@ -1,0 +1,7 @@
+{
+  "name": "bpkg-openstacksetup",
+  "version": "0.1",
+  "description": "helper scripts to set up openstack",
+  "repo": "omi-uulm/bpkg-openstacksetup",
+  "scripts": ["lib/openstacksetup_createAdminUser.sh", "lib/openstacksetup_createEndpoint.sh", "lib/openstacksetup_createService.sh"]
+}
