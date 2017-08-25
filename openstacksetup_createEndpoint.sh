@@ -23,17 +23,17 @@ function openstacksetup_createEndpoint(){
         echo "Endpoint $type exists already"
     else
         echo "Create endpoint $type with url ${url}"
-        openstack endpoint create --region $REGION $type public "${url}"
+        openstack endpoint create --region $REGION $type public ${url}
         if [[ $? != 0 ]]; then 
             echo "cannot create endpoint public" >&2
             return 1
         fi        
-        openstack endpoint create --region $REGION $type internal "${url}"
+        openstack endpoint create --region $REGION $type internal ${url}
         if [[ $? != 0 ]]; then 
             echo "cannot create endpoint internal" >&2
             return 1
         fi        
-        openstack endpoint create --region $REGION $type admin "${url}"
+        openstack endpoint create --region $REGION $type admin ${url}
         if [[ $? != 0 ]]; then 
             echo "cannot create endpoint admin" >&2
             return 1
