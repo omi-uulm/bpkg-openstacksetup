@@ -22,7 +22,7 @@ function openstacksetup_createEndpoint(){
     if [[ $(echo "$endpoints" | grep "$type") ]]; then
         echo "Endpoint $type exists already"
     else
-        echo "Create endpoint $type with url ${url}
+        echo "Create endpoint $type with url ${url}"
         openstack endpoint create --region $REGION $type public "${url}"
         if [[ $? != 0 ]]; then 
             echo "cannot create endpoint public" >&2
