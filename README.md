@@ -7,6 +7,7 @@ The functions offered by bpkg-openstacksetup are recurring tasks while setting u
 - create endpoint (if not exist)
 - create service (if not exist)
 - create user as admin (if not exist)
+- create flavor (if not exist)
 
 ## Installation
 
