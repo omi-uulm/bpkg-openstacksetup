@@ -2,8 +2,10 @@
 # Create OpenStack Endpoint (if not exist)
 #
 # Arguments:
-#   type         Type of endpoint (admin, internal, public)
-#   url          Url to the service of the endpoint
+#   type         Type of endpoint (e.g. "compute")
+#   url_public   Url to the service of the endpoint (public)
+#   url_internal Url to the service of the endpoint (internal)
+#   url_admin    Url to the service of the endpoint (admin)
 #
 # Returns:
 #   -
@@ -12,7 +14,9 @@
 #######################################
 function openstacksetup_createEndpoint(){
     type=$1
-    url=$2
+    url_public=$2
+    url_internal=$3
+    url_admin=$4
 
     endpoints=$(openstack endpoint list)
     if [[ $? != 0 ]]; then 
@@ -23,17 +27,17 @@ function openstacksetup_createEndpoint(){
         echo "Endpoint $type exists already"
     else
         echo "Create endpoint $type with url ${url}"
-        openstack endpoint create --region $REGION $type public ${url}
+        openstack endpoint create --region $REGION $type public ${url_public}
         if [[ $? != 0 ]]; then 
             echo "cannot create endpoint public" >&2
             return 1
         fi        
-        openstack endpoint create --region $REGION $type internal ${url}
+        openstack endpoint create --region $REGION $type internal ${url_internal}
         if [[ $? != 0 ]]; then 
             echo "cannot create endpoint internal" >&2
             return 1
         fi        
-        openstack endpoint create --region $REGION $type admin ${url}
+        openstack endpoint create --region $REGION $type admin ${url_admin}
         if [[ $? != 0 ]]; then 
             echo "cannot create endpoint admin" >&2
             return 1
